@@ -4,7 +4,7 @@ public class Punto {
 	private double x;
 	private double y;
 	
-	public Punto(double px,double py)  {//se puede hacer overrad
+	public Punto(double px,double py)  {
 		this.x=px;
 		this.y=py;
 	}

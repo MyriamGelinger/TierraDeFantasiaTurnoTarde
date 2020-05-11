@@ -1,13 +1,34 @@
 package Taller;
 
 public  abstract class Raza{
+public String NombreRaza;
+public int envenenado=0;
 	private Punto punto;
-	private int  salud;
+	private double  salud;
 	private double danio;
 	private double rangoMin;
 	private double rangoMax;
+	protected abstract String Tipo();
 	
-	public Raza(int salud, double daño, double rangoMin, double rangoMax,Punto punto) {
+	public String utiliza() {
+		String frase = "Es de la Raza: " ;
+		frase+= getNombreRaza();
+		frase += "  utiliza :  ";
+		frase += Tipo();
+		
+		return frase;
+	}
+	public void envenena(){
+		this.envenenado=1;
+	}
+	
+	public String getNombreRaza(){
+		return NombreRaza;
+	}
+
+	
+
+	public Raza(int salud, double danio, double rangoMin, double rangoMax,Punto punto) {
 		this.punto = punto;
 		this.salud = salud;
 		this.danio = danio;
@@ -19,10 +40,12 @@ public  abstract class Raza{
 
 	
 
-	public abstract void atacar(Raza otro);
-	public abstract void recibirAtaque(int daño);
-	public abstract void descansar();
-	public abstract void envenenar ();
+	public abstract void ataca(Raza otro);
+	public abstract void recibeAtaque(double danio);
+	public abstract void descansa();
+	
+	
+	
 	
 	public boolean estaEnRango(Raza otro){
 		double dist = this.punto.distancia(otro.getPosicion()) ;
@@ -35,20 +58,20 @@ public  abstract class Raza{
 		return this.punto;
 	}
 
-	public int getSalud() {
+	public double getSalud() {
 		return salud;
 	}
 
-	public void setSalud(int salud) {
+	public void setSalud(double salud) {
 		this.salud = salud;
 	}
 
-	public double getDaño() {
+	public double getDanio() {
 		return danio;
 	}
 
-	public void setDaño(int daño) {
-		this.danio = daño;
+	public void setDanio(double danio) {
+		this.danio = this.danio + danio;
 	}
 
 
@@ -57,7 +80,8 @@ public  abstract class Raza{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+
 	
 	
 }
